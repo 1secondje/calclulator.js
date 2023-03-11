@@ -4,7 +4,7 @@ let sign = '';
 let finish = false;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-const action = ['-', '+', 'x', '/', '%', '+/-'];
+const action = ['-', '+', 'x', '*', '/', '%', '+/-'];
 
 const out = document.querySelector('.calc-screen p');
 
@@ -64,6 +64,25 @@ function keyboard(event) {
         }
         return;
     }
+
+    if (action.includes(key)) {
+        if (key === '*') {
+            sign = 'x'
+            out.textContent = sign;
+        } else {
+            sign = key;
+            out.textContent = sign;
+        }
+
+
+        if (action.includes(key)) {
+            if (key === '+/-') {
+                a = -1 * a;
+                out.textContent = a
+            }
+        }
+        return;
+    }
 }
 
 function EnterNum() {
@@ -110,7 +129,7 @@ function EnterNum() {
 }
 
 function operation() {
-    
+
     const key = event.target.textContent;
 
     if (key === '=') {
