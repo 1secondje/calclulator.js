@@ -3,6 +3,7 @@ let b = '';
 let sign = '';
 let finish = false;
 
+const numDigit = ['Numpad0', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9']
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', 'x', '*', '/', '%', '+/-'];
 
@@ -39,7 +40,15 @@ function mul() {
 
 function keyboard(event) {
 
-    const key = event.key
+    let key = event.key
+    const numKey = event.code;
+
+    if (numDigit.includes(numKey)) {
+        for (i = 0; i < 1; i++) {
+            let lastNum = numKey.slice(numKey.length - 1)
+            key = lastNum
+        }
+    }
 
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
@@ -73,7 +82,6 @@ function keyboard(event) {
             sign = key;
             out.textContent = sign;
         }
-
 
         if (action.includes(key)) {
             if (key === '+/-') {
