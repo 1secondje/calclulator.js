@@ -50,12 +50,21 @@ document.querySelector('.buttons').addEventListener('click', function (event) {
 
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
-            a += key;
+            if(key === '.' && a.includes('.')) {
+                a += ''
+                out.textContent = a;
+            } else {
+                a += key;
             out.textContent = a;
+            }
+            
         } else if (a !== '' && b !== '' && finish) {
             b = key;
             finish = false;
             out.textContent = b;
+        } else if(key === '.' && b.includes('.')) {
+            a += '';
+            out.textContent = b
         } else {
             b += key;
             out.textContent = b;
